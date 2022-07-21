@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { PriceTable } from '../../components/PriceTable';
 
@@ -17,6 +17,7 @@ interface Product {
 
 export const ProductMarket = () => {
   const [productMarket, setProductMarket] = useState<Product[]>();
+  const [isLoading, setIsLoading] = useState(true);
 
   const formatData = (data: { [x: string]: any }) => {
     if (!data) return;
@@ -42,8 +43,16 @@ export const ProductMarket = () => {
 
         setProductMarket(formatedData);
       })
-      .catch((err) => console.log('error', err));
+      .catch((err) => console.log('error', err))
+      .finally(() => setIsLoading(false));
   }, []);
+
+  if (isLoading)
+    return (
+      <CircularProgress
+        sx={{ margin: 'auto', display: 'flex', marginTop: '25%' }}
+      />
+    );
 
   return (
     <Box

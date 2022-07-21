@@ -35,8 +35,6 @@ export const PriceTable = ({
         <TableBody>
           {productMarketDetails?.map((market) => {
             const { country, price, stock } = market;
-            console.log('ahoj', market);
-
             if (!country || !price || !stock)
               return <div>Can't get any data</div>;
 

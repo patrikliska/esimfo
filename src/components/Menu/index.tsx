@@ -17,10 +17,18 @@ import {
 } from './styles';
 
 interface MenuProps {
-  pages?: string[];
+  pages?: {
+    name: string;
+    href: string;
+  }[];
 }
 
-const Menu = ({ pages = ['About', 'TestPage'] }: MenuProps) => (
+const Menu = ({
+  pages = [
+    { name: 'Product market', href: '' },
+    { name: 'Battle drops', href: 'battleDrops' },
+  ],
+}: MenuProps) => (
   <AppBar position='static' sx={styledMenuContainer}>
     <Container maxWidth='xl'>
       <Toolbar disableGutters>
@@ -31,16 +39,16 @@ const Menu = ({ pages = ['About', 'TestPage'] }: MenuProps) => (
           <Link href='/' sx={styledHomeButton}>
             <Home fontSize='large' />
           </Link>
-          {pages.map((page) => (
-            <Link href={`/${page.toLowerCase()}`} sx={styledLink}>
+          {pages.map(({ name, href }) => (
+            <Link href={`/${href}`} sx={styledLink}>
               <Typography
-                variant='h6'
+                variant='button'
                 noWrap
                 component='a'
-                href='/'
+                href={`/${href}`}
                 sx={styledLink}
               >
-                {page}
+                {name}
               </Typography>
             </Link>
           ))}

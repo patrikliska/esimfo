@@ -7,17 +7,4 @@ export const muiTypographySettings: ComponentSettings<'MuiTypography'> = {
       display: 'flex',
     },
   },
-  variants: [
-    {
-      props: { variant: 'h6' },
-      style: {
-        '&:hover': {
-          textDecoration: 'none',
-          color: 'inherit',
-          transform: 'scale(1.03)',
-          transition: 'all 200ms',
-        },
-      },
-    },
-  ],
 };
