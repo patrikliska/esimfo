@@ -1,4 +1,12 @@
-import { Box, CircularProgress } from '@mui/material';
+import {
+  Box,
+  CircularProgress,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from '@mui/material';
 import { useEffect, useState } from 'react';
 import { PriceTable } from '../../components/PriceTable';
 
@@ -17,7 +25,8 @@ interface Product {
 
 export const ProductMarket = () => {
   const [productMarket, setProductMarket] = useState<Product[]>();
-  const [isLoading, setIsLoading] = useState(true);
+  const [server, setServer] = useState<string | undefined>();
+  const [isLoading, setIsLoading] = useState(false);
 
   const formatData = (data: { [x: string]: any }) => {
     if (!data) return;
@@ -31,39 +40,65 @@ export const ProductMarket = () => {
     });
   };
 
-  useEffect(() => {
-    fetch(
-      'https://e-sim-api.herokuapp.com//https:/chimera.e-sim.org/prices.html'
-    )
-      .then((response) => response.json())
-      .then((actualData) => {
-        const formatedData = formatData(actualData);
+  const handleChange = (event: SelectChangeEvent) => {
+    setServer(event.target.value);
 
-        console.log('formatedData', formatedData);
+    if (event.target.value) {
+      setIsLoading(true);
 
-        setProductMarket(formatedData);
-      })
-      .catch((err) => console.log('error', err))
-      .finally(() => setIsLoading(false));
-  }, []);
+      fetch(
+        `https://e-sim-api.herokuapp.com//https:/${event.target.value}.e-sim.org/prices.html`
+      )
+        .then((response) => response.json())
+        .then((actualData) => {
+          const formatedData = formatData(actualData);
 
-  if (isLoading)
-    return (
-      <CircularProgress
-        sx={{ margin: 'auto', display: 'flex', marginTop: '25%' }}
-      />
-    );
+          console.log('formatedData', formatedData);
+
+          setProductMarket(formatedData);
+        })
+        .catch((err) => console.log('error', err))
+        .finally(() => setIsLoading(false));
+    }
+  };
 
   return (
     <Box
       sx={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 1 }}
     >
-      {productMarket?.map((product) => (
-        <PriceTable
-          productName={product.name}
-          productMarketDetails={product.marketDetails}
+      <Box sx={{ minWidth: 120, gridColumn: '1 / 6' }}>
+        <FormControl fullWidth>
+          <InputLabel id='demo-simple-select-label'>Server</InputLabel>
+          <Select
+            labelId='demo-simple-select-label'
+            id='demo-simple-select'
+            value={server}
+            label='Server'
+            onChange={handleChange}
+          >
+            <MenuItem value='chimera'>chimera</MenuItem>
+            <MenuItem value='versa'>versa</MenuItem>
+            <MenuItem value='luxia'>luxia</MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
+      {isLoading ? (
+        <CircularProgress
+          sx={{
+            margin: 'auto',
+            display: 'flex',
+            marginTop: '25%',
+            gridColumn: '1 / 6',
+          }}
         />
-      ))}
+      ) : (
+        productMarket?.map((product) => (
+          <PriceTable
+            productName={product.name}
+            productMarketDetails={product.marketDetails}
+          />
+        ))
+      )}
     </Box>
   );
 };

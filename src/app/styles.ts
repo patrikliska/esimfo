@@ -29,5 +29,5 @@ export const styledPageContainer = () => ({
   borderBottomRightRadius: 15,
   height: '100%',
   width: '100%',
-  padding: 10,
+  padding: `24px 12px`,
 });
