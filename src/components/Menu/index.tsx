@@ -32,11 +32,11 @@ const Menu = ({
   <AppBar position='static' sx={styledMenuContainer}>
     <Container maxWidth='xl'>
       <Toolbar disableGutters>
-        <Typography variant='h4' component='a' href='/' sx={styledLogo}>
+        <Typography variant='h4' component='a' href='/esimfo' sx={styledLogo}>
           E-Simfo
         </Typography>
         <Box sx={styledLinkContainer}>
-          <Link href='esimfo/' sx={styledHomeButton}>
+          <Link href='/esimfo' sx={styledHomeButton}>
             <Home fontSize='large' />
           </Link>
           {pages.map(({ name, href }) => (

@@ -16,7 +16,8 @@ const App = () => {
       <div style={styledContentContainer()}>
         <div style={styledPageContainer()}>
           <Routes>
-            <Route path='/esimfo' element={<ProductMarket />} />
+            {/* <Route path='/esimfo' element={<ProductMarket />} /> */}
+            <Route path='/esimfo' element={<BattleDrops />} />
             <Route path='/esimfo/battleDrops' element={<BattleDrops />} />
           </Routes>
         </div>
