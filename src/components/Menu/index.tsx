@@ -25,8 +25,8 @@ interface MenuProps {
 
 const Menu = ({
   pages = [
-    { name: 'Product market', href: '' },
-    { name: 'Battle drops', href: 'battleDrops' },
+    { name: 'Product market', href: 'esimfo' },
+    { name: 'Battle drops', href: 'esimfo/battleDrops' },
   ],
 }: MenuProps) => (
   <AppBar position='static' sx={styledMenuContainer}>
@@ -36,7 +36,7 @@ const Menu = ({
           E-Simfo
         </Typography>
         <Box sx={styledLinkContainer}>
-          <Link href='/' sx={styledHomeButton}>
+          <Link href='esimfo/' sx={styledHomeButton}>
             <Home fontSize='large' />
           </Link>
           {pages.map(({ name, href }) => (
