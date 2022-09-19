@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/esimfo/static/css/main.58930845.css",
+    "main.js": "/esimfo/static/js/main.7684db00.js",
+    "index.html": "/esimfo/index.html",
+    "main.58930845.css.map": "/esimfo/static/css/main.58930845.css.map",
+    "main.7684db00.js.map": "/esimfo/static/js/main.7684db00.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.58930845.css",
+    "static/js/main.7684db00.js"
+  ]
+}
