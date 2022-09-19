@@ -17,7 +17,7 @@ const App = () => {
         <div style={styledPageContainer()}>
           <Routes>
             <Route path='/esimfo' element={<ProductMarket />} />
-            <Route path='esimfo/battleDrops' element={<BattleDrops />} />
+            <Route path='/esimfo/battleDrops' element={<BattleDrops />} />
           </Routes>
         </div>
       </div>
